@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GET /usuarios/{id}",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["nome", "email", "password", "administrador", "_id"],
+  "properties": {
+        "nome": { "type": "string", "minLength": 1 },
+        "email": { "type": "string", "format": "email" },
+        "password": { "type": "string", "minLength": 1 },
+        "administrador": { "type": "string", "enum": ["true", "false"] },
+        "_id": { "type": "string", "pattern": "^[A-Za-z0-9]{16}$" }
+  }
+}

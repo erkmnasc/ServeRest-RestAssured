@@ -42,7 +42,7 @@ public final class DadosFactory {
         return new Usuario(
                 FAKER.name().fullName(),
                 emailUnico(),
-                FAKER.internet().password(8, 12),
+                "Qa@" + sufixo(),
                 String.valueOf(administrador));
     }
 

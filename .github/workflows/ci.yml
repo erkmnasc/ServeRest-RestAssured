@@ -9,6 +9,10 @@ on:
     # toda segunda-feira, 8h (horário de Brasília): avisa se algo quebrar sem mudança no código
     - cron: "0 11 * * 1"
 
+permissions:
+  contents: read
+  checks: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -41,6 +45,15 @@ jobs:
         run: mvn -B test
         env:
           API_URL: http://localhost:3000
+
+      # Tabela com o resultado de cada teste na página da execução
+      - name: Resumo dos testes
+        if: always()
+        uses: mikepenz/action-junit-report@v6
+        with:
+          report_paths: target/surefire-reports/TEST-*.xml
+          detailed_summary: true
+          include_passed: true
 
       - name: Relatórios
         if: always()

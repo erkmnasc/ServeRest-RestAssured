@@ -33,6 +33,15 @@ Datafaker · Maven · GitHub Actions
   decimal e texto)
 - exclusão conferida com nova consulta
 
+**`/carrinhos`** (`CarrinhosTest`)
+- carrinho criado, conferido com GET e JSON Schema (quantidade e preço total
+  calculados)
+- regra de estoque: criar o carrinho baixa o estoque, concluir a compra
+  mantém baixado, cancelar devolve
+- sem token, produto inexistente, quantidade maior que o estoque,
+  quantidade não positiva, produto repetido e segundo carrinho do usuário
+- produto e usuário com carrinho aberto não podem ser excluídos
+
 **Cucumber** (`features/cadastro_usuario.feature`, em português)
 - cadastro de administrador, email repetido e um Esquema do Cenário para cada
   campo obrigatório
@@ -44,7 +53,7 @@ produto únicos) e remove o que criou no fim.
 
 ```
 src/test/java/br/com/erkmnasc/serverest/
-  api/       testes JUnit por recurso (login, usuários, produtos)
+  api/       testes JUnit por recurso (login, usuários, produtos, carrinhos)
   bdd/       runner e passos do Cucumber
   client/    chamadas HTTP de cada recurso, sem validação
   model/     records usados no corpo das requisições

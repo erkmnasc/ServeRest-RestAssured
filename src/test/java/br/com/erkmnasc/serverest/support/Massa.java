@@ -1,7 +1,9 @@
 package br.com.erkmnasc.serverest.support;
 
 import br.com.erkmnasc.serverest.client.LoginClient;
+import br.com.erkmnasc.serverest.client.ProdutosClient;
 import br.com.erkmnasc.serverest.client.UsuariosClient;
+import br.com.erkmnasc.serverest.model.Produto;
 import br.com.erkmnasc.serverest.model.Usuario;
 
 /**
@@ -23,5 +25,17 @@ public final class Massa {
         return LoginClient.login(usuario.email(), usuario.password())
                 .then().statusCode(200)
                 .extract().path("authorization");
+    }
+
+    public static String cadastrarProduto(Produto produto, String tokenAdmin) {
+        return ProdutosClient.cadastrar(produto, tokenAdmin)
+                .then().statusCode(201)
+                .extract().path("_id");
+    }
+
+    public static int estoqueDo(String idProduto) {
+        return ProdutosClient.buscarPorId(idProduto)
+                .then().statusCode(200)
+                .extract().path("quantidade");
     }
 }

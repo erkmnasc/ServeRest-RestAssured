@@ -31,11 +31,15 @@ public final class DadosFactory {
     }
 
     public static Produto produto() {
+        return produtoComEstoque(FAKER.number().numberBetween(1, 100));
+    }
+
+    public static Produto produtoComEstoque(int quantidade) {
         return new Produto(
                 FAKER.commerce().productName() + " " + sufixo(),
                 FAKER.number().numberBetween(10, 5000),
                 FAKER.commerce().material(),
-                FAKER.number().numberBetween(1, 100));
+                quantidade);
     }
 
     private static Usuario usuario(boolean administrador) {

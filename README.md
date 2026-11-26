@@ -86,4 +86,5 @@ O relatório do Cucumber fica em `target/cucumber-report.html`.
 
 O GitHub Actions sobe o ServeRest 3.5.0 num service container, roda
 `mvn test` contra ele e guarda o relatório do Cucumber e os relatórios do
-Surefire como artefatos (`.github/workflows/ci.yml`).
+Surefire como artefatos (`.github/workflows/ci.yml`). Também roda toda segunda-feira, para
+avisar se algo mudar na API.
